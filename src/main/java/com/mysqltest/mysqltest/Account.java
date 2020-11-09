@@ -1,11 +1,16 @@
 package com.mysqltest.mysqltest;
 
+import lombok.Getter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Test {
+@Getter
+public class Account {
 
     @Id
-    private String test;
+    private String userId;
+
+    private String password;
 }

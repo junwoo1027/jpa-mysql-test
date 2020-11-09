@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="userId">
+<input type="password" id="password">
+<button type="button" id="btn_login">로그인</button>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="application/javascript">
+    var index = {
+        init : function() {
+            var _this = this;
+
+            $('#btn_login').on('click', function () {
+                _this.save();
+            });
+        },
+
+        save : function () {
+            var data = {
+                userId: $('#userId').val(),
+                password: $('#password').val(),
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/loginaccount',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function () {
+                alert('로그인.');
+                window.location.href = '/';
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        }
+    };
+
+    index.init();
+
+</script>
+</html>
